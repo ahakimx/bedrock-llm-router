@@ -8,17 +8,10 @@ of small Indonesian sellers. Merchants ask about fees, payouts, shipping, and re
 English, and every answer must come from a ~2,000-token merchant guide. A sample guide and 30 test
 questions ship with the repo, so you can run everything end to end yourself.
 
-```
-merchant question
-      │
-      ▼
- router (Nova Micro, forced tool call) ── fails? ──► primary model
-      │ simple                │ complex
-      ▼                       ▼
- Nova Micro + guide       Nova 2 Lite + guide        guide = cached prefix (prompt caching)
-      │                       │
-      └──────► answer + per-request cost (CloudWatch EMF metric)
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/architecture-dark.svg">
+  <img alt="Merchant question goes to a Lambda function; a Nova Micro router sends simple questions to Nova Micro and complex ones (or router errors) to Nova 2 Lite; the merchant guide is a cached prefix; per-request cost goes to CloudWatch with a fallback alarm." src="docs/images/architecture.svg" width="100%">
+</picture>
 
 What is in the repo:
 

@@ -1,0 +1,163 @@
+{
+ "w": 1000,
+ "h": 470,
+ "groups": [
+  {
+   "type": "region",
+   "label": "AWS Region us-east-1",
+   "x": 160,
+   "y": 24,
+   "w": 820,
+   "h": 432
+  },
+  {
+   "type": "generic",
+   "label": "Amazon Bedrock (cross-Region inference profiles)",
+   "x": 390,
+   "y": 52,
+   "w": 570,
+   "h": 305
+  }
+ ],
+ "nodes": [
+  {
+   "id": "user",
+   "icon": "users",
+   "label": "Merchant",
+   "sub": "question (ID / EN)",
+   "x": 75,
+   "y": 200,
+   "step": 1
+  },
+  {
+   "id": "fn",
+   "icon": "lambda-fn",
+   "label": "AWS Lambda",
+   "sub": "merchant-assistant",
+   "x": 270,
+   "y": 200,
+   "step": 2
+  },
+  {
+   "id": "flag",
+   "icon": "ssm-parameter",
+   "label": "SSM Parameter",
+   "sub": "router / cache flags",
+   "x": 270,
+   "y": 390,
+   "step": 2
+  },
+  {
+   "id": "router",
+   "icon": "nova",
+   "label": "Router",
+   "sub": "Nova Micro \u00b7 forced tool call",
+   "x": 480,
+   "y": 205,
+   "step": 3
+  },
+  {
+   "id": "small",
+   "icon": "nova",
+   "label": "Nova Micro",
+   "sub": "simple questions",
+   "x": 720,
+   "y": 105,
+   "step": 4
+  },
+  {
+   "id": "primary",
+   "icon": "nova",
+   "label": "Nova 2 Lite",
+   "sub": "complex + fallback",
+   "x": 720,
+   "y": 300,
+   "step": 4
+  },
+  {
+   "id": "guide",
+   "icon": "document",
+   "label": "Merchant guide",
+   "sub": "~2K tokens \u00b7 cachePoint",
+   "x": 895,
+   "y": 205,
+   "step": 5
+  },
+  {
+   "id": "cw",
+   "icon": "cloudwatch",
+   "label": "CloudWatch",
+   "sub": "EMF: CostUSD, LatencyMs",
+   "x": 520,
+   "y": 400,
+   "step": 6
+  },
+  {
+   "id": "alarm",
+   "icon": "cw-alarm",
+   "label": "Fallback alarm",
+   "sub": "\u2265 5 in 5 min",
+   "x": 800,
+   "y": 400,
+   "step": 6
+  }
+ ],
+ "edges": [
+  {
+   "from": "user",
+   "to": "fn",
+   "label": "question",
+   "step": 2
+  },
+  {
+   "from": "flag",
+   "to": "fn",
+   "label": "read (60 s cache)",
+   "step": 2,
+   "dashed": true
+  },
+  {
+   "from": "fn",
+   "to": "router",
+   "label": "classify",
+   "step": 3
+  },
+  {
+   "from": "router",
+   "to": "small",
+   "label": "simple",
+   "step": 4
+  },
+  {
+   "from": "router",
+   "to": "primary",
+   "label": "complex / error",
+   "step": 4
+  },
+  {
+   "from": "guide",
+   "to": "small",
+   "label": "cached prefix",
+   "step": 5,
+   "dashed": true
+  },
+  {
+   "from": "guide",
+   "to": "primary",
+   "step": 5,
+   "dashed": true
+  },
+  {
+   "from": "fn",
+   "to": "cw",
+   "label": "cost per request",
+   "step": 6
+  },
+  {
+   "from": "cw",
+   "to": "alarm",
+   "step": 6
+  }
+ ],
+ "caption": "One Lambda function: a Nova Micro router picks the answering model, the merchant guide is a cached prefix, and every request reports its cost to CloudWatch."
+}
