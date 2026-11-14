@@ -72,8 +72,8 @@ Run a single mode with `PYTHONPATH=src python -m merchantbot.evaluate --mode rou
 
 ```bash
 scripts/deploy.sh
-scripts/ask.sh "Berapa minimal penarikan saldo?"
-scripts/ask.sh "Pembeli pesan kerupuk Rp200.000 plus ongkir Rp20.000 dan bayar COD. Berapa total biaya yang saya bayar?"
+scripts/ask.sh "What is the minimum withdrawal?"
+scripts/ask.sh "A buyer orders kerupuk for Rp200,000 plus Rp20,000 shipping and pays COD. What are my fees?"
 ```
 
 The response shows the route, the model that answered, and the cost of that request.

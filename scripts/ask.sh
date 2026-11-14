@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: scripts/ask.sh "Berapa minimal penarikan saldo?"
+# Usage: scripts/ask.sh "What is the minimum withdrawal?"
 set -euo pipefail
 STACK="${STACK:-merchant-assistant}"
 REGION="${AWS_REGION:-us-east-1}"
