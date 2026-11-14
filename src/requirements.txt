@@ -1,0 +1,3 @@
+# Bundled so the Lambda package does not depend on the runtime's built-in boto3 version
+# (Converse cachePoint needs a recent botocore).
+boto3>=1.38

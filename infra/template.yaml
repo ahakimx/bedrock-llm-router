@@ -1,0 +1,104 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Lapak Pesisir merchant assistant: a cost-aware LLM router on Amazon Bedrock
+  (small-model router + prompt caching), with per-request cost metrics.
+
+Parameters:
+  PrimaryModel:
+    Type: String
+    Default: us.amazon.nova-2-lite-v1:0
+    Description: Inference profile for complex questions.
+  SmallModel:
+    Type: String
+    Default: us.amazon.nova-micro-v1:0
+    Description: Inference profile for simple questions and for the router itself.
+
+Resources:
+  # Feature flag. Change it with `aws ssm put-parameter --overwrite` to switch the router or
+  # caching off without a deploy; the function re-reads it at most once a minute.
+  RouterFlag:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub /${AWS::StackName}/router-flags
+      Type: String
+      Value: '{"router": true, "cache": true}'
+      Description: Router and prompt caching switches for the assistant
+
+  AssistantLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${AWS::StackName}-assistant
+      RetentionInDays: 7
+
+  AssistantFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-assistant
+      CodeUri: ../src
+      Handler: lapak.handler.handler
+      Runtime: python3.13
+      Architectures: [arm64]
+      MemorySize: 512
+      Timeout: 45
+      LoggingConfig:
+        LogGroup: !Ref AssistantLogs
+      Environment:
+        Variables:
+          PRIMARY_MODEL: !Ref PrimaryModel
+          SMALL_MODEL: !Ref SmallModel
+          ROUTER_FLAG_PARAM: !Ref RouterFlag
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            # A cross-Region inference profile needs permission on the profile in this Region AND on
+            # the foundation model in every Region the profile can route to.
+            - Sid: InvokeTheTwoProfiles
+              Effect: Allow
+              Action: bedrock:InvokeModel
+              Resource:
+                - !Sub arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/${PrimaryModel}
+                - !Sub arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/${SmallModel}
+            - Sid: InvokeUnderlyingModelsAnyUSRegion
+              Effect: Allow
+              Action: bedrock:InvokeModel
+              Resource:
+                - !Sub
+                  - arn:${AWS::Partition}:bedrock:us-*::foundation-model/${Model}
+                  - Model: !Select [1, !Split ["us.", !Ref PrimaryModel]]
+                - !Sub
+                  - arn:${AWS::Partition}:bedrock:us-*::foundation-model/${Model}
+                  - Model: !Select [1, !Split ["us.", !Ref SmallModel]]
+              Condition:
+                StringLike:
+                  bedrock:InferenceProfileArn: !Sub arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/us.*
+            - Sid: ReadFeatureFlag
+              Effect: Allow
+              Action: ssm:GetParameter
+              Resource: !Sub arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter${RouterFlag}
+
+  # Fires when the router keeps failing and every question falls back to the expensive model.
+  RouterFallbackAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub ${AWS::StackName}-router-fallbacks
+      AlarmDescription: Router failing; all traffic is going to the primary model.
+      Namespace: LapakPesisir/Assistant
+      MetricName: RouterFallback
+      Dimensions:
+        - Name: Route
+          Value: router-error
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 5
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+
+Outputs:
+  FunctionName:
+    Value: !Ref AssistantFunction
+  FlagParameter:
+    Value: !Ref RouterFlag
+  LogGroup:
+    Value: !Ref AssistantLogs
