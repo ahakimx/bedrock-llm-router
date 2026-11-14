@@ -3,9 +3,10 @@
 Send easy questions to a cheap model, hard ones to a stronger model, cache the long system prompt, and
 measure whether any of it actually saves money without hurting answer quality.
 
-The example is a merchant assistant for **Lapak Pesisir**, a fictional marketplace for small coastal
-businesses in Indonesia. Merchants ask about fees, payouts, shipping, and returns, in Indonesian or
-English. Every answer must come from a ~2,000-token merchant guide.
+This is a hands-on project: you build the merchant-support chatbot for **Lapak Pesisir**, an e-commerce
+marketplace for small coastal businesses in Indonesia. Merchants ask about fees, payouts, shipping, and
+returns, in Indonesian or English, and every answer must come from a ~2,000-token merchant guide. The
+guide and the 30 test questions ship with the repo, so you can run everything end to end yourself.
 
 ```
 merchant question
@@ -134,4 +135,4 @@ money while idle; the only charges are Bedrock tokens per request and CloudWatch
 
 ## License
 
-MIT-0. Lapak Pesisir, its merchants, and the help desk number are fictional.
+MIT-0. The merchant guide and test questions are sample data for this project.

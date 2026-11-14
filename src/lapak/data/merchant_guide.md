@@ -1,6 +1,6 @@
 # Lapak Pesisir Merchant Guide
 
-Lapak Pesisir is a fictional online marketplace for small businesses in a coastal town in Indonesia. Merchants sell
+Lapak Pesisir is an online marketplace for small businesses in a coastal town in Indonesia. Merchants sell
 local food, seafood products, snacks, crafts, and clothing. This guide is the only source of truth for the merchant
 assistant. If a question is not covered here, the assistant must say so and point the merchant to the help desk.
 
@@ -160,6 +160,6 @@ period before the next withdrawal.
 
 ## 11. Help desk
 
-11.1 The help desk is available on WhatsApp at +62 811-555-0100 (fictional), Monday to Saturday, 08:00 to 17:00 WIB.
+11.1 The help desk is available by email at bantuan@lapakpesisir.example, Monday to Saturday, 08:00 to 17:00 WIB.
 
 11.2 Urgent issues about stolen accounts are handled 7 days a week.
