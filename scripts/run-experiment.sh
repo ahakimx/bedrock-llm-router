@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Runs the 30-question golden dataset through every mode against Amazon Bedrock, then prints the
-# comparison table. Cost: well under US$0.20 in total. Needs AWS credentials and model access (see README).
+# comparison table. Cost: well under US$0.20 in total. Needs AWS credentials allowed to invoke the Nova models (see README).
 #   SKIP_IPR=1 scripts/run-experiment.sh   # skip the Bedrock Intelligent Prompt Routing comparison
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -13,6 +13,6 @@ done
 if [ "${SKIP_IPR:-0}" != "1" ]; then
   echo "== bedrock-ipr (comparison: Bedrock Intelligent Prompt Routing, Nova Lite / Nova Pro)"
   python3 -m merchantbot.evaluate --mode bedrock-ipr > /dev/null \
-    || echo "   bedrock-ipr failed (no default Nova prompt router or no Nova Lite/Pro access?); continuing without it"
+    || echo "   bedrock-ipr failed (no default Nova prompt router, or IAM does not allow Nova Lite/Pro?); continuing without it"
 fi
 python3 -m merchantbot.report | tee results/report.md

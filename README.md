@@ -28,12 +28,15 @@ What is in the repo:
 ## Prerequisites
 
 - An AWS account, Region **us-east-1** (the code uses the `us.` cross-Region inference profiles).
-- In the Bedrock console, **Model access** enabled for **Amazon Nova Micro** and **Amazon Nova 2 Lite**
-  (plus **Amazon Nova Lite** and **Nova Pro** for the optional Intelligent Prompt Routing comparison).
-- Python 3.11+, AWS CLI v2, and (for the Lambda part) AWS SAM CLI.
+- An IAM identity that may call `bedrock:InvokeModel` on **Amazon Nova Micro** and **Amazon Nova 2 Lite**
+  (plus **Nova Lite**, **Nova Pro** and `bedrock:ListPromptRouters` for the optional Intelligent Prompt
+  Routing comparison). Serverless models in Bedrock are enabled by default since October 2025, so there
+  is no model-access page to visit; only IAM policies or SCPs can block them.
+- **Python 3.13** (the Lambda runtime; `sam build` without a container uses your local `python3.13`),
+  AWS CLI v2, and (for the Lambda part) AWS SAM CLI. On macOS: `brew install python@3.13 awscli aws-sam-cli`.
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
+python3.13 -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
 ```
 
