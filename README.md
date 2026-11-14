@@ -73,7 +73,7 @@ Run a single mode with `PYTHONPATH=src python -m merchantbot.evaluate --mode rou
 ```bash
 scripts/deploy.sh
 scripts/ask.sh "Berapa minimal penarikan saldo?"
-scripts/ask.sh "A buyer orders kerupuk for Rp200,000 plus Rp20,000 shipping and pays COD. What are my fees?"
+scripts/ask.sh "Pembeli pesan kerupuk Rp200.000 plus ongkir Rp20.000 dan bayar COD. Berapa total biaya yang saya bayar?"
 ```
 
 The response shows the route, the model that answered, and the cost of that request.
@@ -105,6 +105,23 @@ scripts/cleanup.sh
 
 This deletes the function, IAM role, log group, SSM parameter, and alarm. Nothing in the stack costs
 money while idle; the only charges are Bedrock tokens per request and CloudWatch logs.
+
+`sam deploy --resolve-s3` also creates an `aws-sam-cli-managed-default-…` bucket for build artifacts.
+`sam delete` empties this stack's objects but keeps the bucket; delete it in the S3 console if you don't
+use SAM elsewhere.
+
+## What it costs
+
+Rough numbers with us-east-1 list prices (check the pricing page; your token counts will differ):
+
+| Activity | Estimate |
+|---|---|
+| One full `run-experiment.sh` (4 modes × 30 questions, ~120 Bedrock calls + 60 router calls) | about US$0.05–0.10 |
+| Lambda, SSM, logs during a short test | effectively $0 (free tier / a few cents) |
+| CloudWatch alarm | US$0.10 per alarm-month, prorated; gone after cleanup |
+| Offline tests (`FAKE_BEDROCK=1`) | $0 |
+
+So following the whole guide, with a few re-runs, stays well under US$1.
 
 ## Things that tripped me up
 
