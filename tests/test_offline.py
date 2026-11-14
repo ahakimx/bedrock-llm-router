@@ -1,14 +1,14 @@
-"""Offline tests: no AWS calls. Run with `LAPAK_FAKE=1 python -m pytest -q` from the repo root."""
+"""Offline tests: no AWS calls. Run with `FAKE_BEDROCK=1 python -m pytest -q` from the repo root."""
 import os
 import sys
 import pathlib
 
-os.environ["LAPAK_FAKE"] = "1"
+os.environ["FAKE_BEDROCK"] = "1"
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "src"))
 
-from lapak import assistant, config, cost, evaluate, handler, router  # noqa: E402
-from lapak.fake import FakeBedrock  # noqa: E402
-from lapak.grading import grade, normalize  # noqa: E402
+from merchantbot import assistant, config, cost, evaluate, handler, router  # noqa: E402
+from merchantbot.fake import FakeBedrock  # noqa: E402
+from merchantbot.grading import grade, normalize  # noqa: E402
 
 
 def test_number_normalization():
@@ -56,7 +56,7 @@ def test_router_sends_simple_questions_to_the_small_model():
 
 def test_misrouted_complex_question_fails_quality(tmp_path):
     # The fake small model cannot answer complex questions: a misroute must show up as a failed answer.
-    from lapak.service import ask
+    from merchantbot.service import ask
     q = "My store score has been 55 for the last two weeks. What happens to my store?"
 
     class AlwaysSimple(FakeBedrock):

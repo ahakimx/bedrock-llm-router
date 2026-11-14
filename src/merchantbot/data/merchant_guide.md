@@ -1,6 +1,6 @@
-# Lapak Pesisir Merchant Guide
+# Merchant Guide
 
-Lapak Pesisir is an online marketplace for small businesses in a coastal town in Indonesia. Merchants sell
+This guide covers an online marketplace for small businesses in a coastal town in Indonesia. Merchants sell
 local food, seafood products, snacks, crafts, and clothing. This guide is the only source of truth for the merchant
 assistant. If a question is not covered here, the assistant must say so and point the merchant to the help desk.
 
@@ -23,7 +23,7 @@ It becomes active again after the merchant updates any product.
 
 2.1 Listing products is free. There is no monthly fee.
 
-2.2 Lapak Pesisir charges a service fee of 4% of the product price for every completed order. Shipping cost is not
+2.2 The marketplace charges a service fee of 4% of the product price for every completed order. Shipping cost is not
 included in the fee calculation.
 
 2.3 Orders paid with cash on delivery (COD) carry an extra handling fee of Rp1,500 per order, paid by the merchant.
@@ -31,7 +31,7 @@ included in the fee calculation.
 2.4 Merchants in the "Mitra Unggulan" (featured partner) program pay a service fee of 3% instead of 4%. To qualify, a
 store needs at least 50 completed orders in the last 30 days and an average rating of 4.7 or higher.
 
-2.5 Promotions funded by Lapak Pesisir (for example the "Gebyar Pesisir" campaign) do not reduce the merchant's payout.
+2.5 Promotions funded by the marketplace (for example the monthly "Mega Sale" campaign) do not reduce the merchant's payout.
 Promotions funded by the merchant reduce the payout by the discount amount.
 
 ## 3. Payouts
@@ -84,7 +84,7 @@ counterfeit branded goods.
 | Songket and fabric | 5 working days | 7 days for any defect | Exact length and width |
 | Muslim clothing | 3 working days | 7 days for size exchange | Size chart in the photos |
 
-5.1 "Working days" are Monday to Saturday, excluding national holidays. Sunday is not a working day for Lapak Pesisir.
+5.1 "Working days" are Monday to Saturday, excluding national holidays. Sunday is not a working day for the marketplace.
 
 5.2 Pre-order products may set a processing time of up to 14 days. The word "PO" and the processing time must appear
 in the product title.
@@ -97,10 +97,10 @@ automatically and the buyer is refunded.
 6.2 After accepting, the merchant must hand the parcel to the courier within the category's processing time.
 Late handover more than 2 times in 30 days lowers the store score.
 
-6.3 Available couriers: JNE, J&T, SiCepat, and "Kurir Pesisir" (local motorbike courier for same-day delivery inside
-the city). Kurir Pesisir operates 08:00 to 20:00 WIB.
+6.3 Available couriers: JNE, J&T, SiCepat, and "Kurir Lokal" (local motorbike courier for same-day delivery inside
+the city). Kurir Lokal operates 08:00 to 20:00 WIB.
 
-6.4 Kurir Pesisir costs a flat Rp8,000 inside the city and Rp15,000 to the two neighboring towns.
+6.4 Kurir Lokal costs a flat Rp8,000 inside the city and Rp15,000 to the two neighboring towns.
 
 6.5 Merchants must upload the courier receipt number (resi) within 6 hours of handover.
 
@@ -112,9 +112,9 @@ the city). Kurir Pesisir operates 08:00 to 20:00 WIB.
 courier.
 
 7.2 The buyer must provide an unboxing video for claims about damaged or missing items. Without an unboxing video,
-Lapak Pesisir may reject the claim.
+the marketplace may reject the claim.
 
-7.3 For an approved return, the buyer ships the item back. Lapak Pesisir pays the return shipping if the merchant was at
+7.3 For an approved return, the buyer ships the item back. The marketplace pays the return shipping if the merchant was at
 fault (wrong item, damaged, expired). The buyer pays if they changed their mind, where the category allows it.
 
 7.4 Food products cannot be returned because the buyer changed their mind.
@@ -122,7 +122,7 @@ fault (wrong item, damaged, expired). The buyer pays if they changed their mind,
 7.5 The merchant has 2 working days to respond to a return request. No response means the return is approved
 automatically.
 
-7.6 Disputes are reviewed by the Lapak Pesisir team within 3 working days. The merchant balance for that order is
+7.6 Disputes are reviewed by the marketplace team within 3 working days. The merchant balance for that order is
 frozen during the review.
 
 7.7 Refunds to buyers are processed within 1 working day after a return is approved.
@@ -140,7 +140,7 @@ not allowed and can lead to suspension.
 
 ## 9. Promotions and campaigns
 
-9.1 "Gebyar Pesisir" runs on the 10th of every month. Lapak Pesisir funds free shipping up to Rp10,000 for orders above
+9.1 The "Mega Sale" runs on the 10th of every month. The marketplace funds free shipping up to Rp10,000 for orders above
 Rp50,000.
 
 9.2 "Ramadan Berkah" runs during Ramadan. Merchants who join must offer at least 10% discount on at least 3 products.
@@ -151,7 +151,7 @@ Rp50,000.
 
 ## 10. Account safety
 
-10.1 Lapak Pesisir staff will never ask for a password, PIN, or OTP code. Report anyone who asks.
+10.1 Marketplace staff will never ask for a password, PIN, or OTP code. Report anyone who asks.
 
 10.2 Changing the payout bank account requires an OTP sent to the registered WhatsApp number and a 24-hour holding
 period before the next withdrawal.
@@ -160,6 +160,6 @@ period before the next withdrawal.
 
 ## 11. Help desk
 
-11.1 The help desk is available by email at bantuan@lapakpesisir.example, Monday to Saturday, 08:00 to 17:00 WIB.
+11.1 The help desk is available through the Help Center in the merchant dashboard, Monday to Saturday, 08:00 to 17:00 WIB.
 
 11.2 Urgent issues about stolen accounts are handled 7 days a week.

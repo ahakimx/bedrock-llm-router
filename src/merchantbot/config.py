@@ -15,5 +15,5 @@ MAX_ANSWER_TOKENS = int(os.environ.get("MAX_ANSWER_TOKENS", "300"))
 # router off in production without a deploy.
 FLAG_PARAM = os.environ.get("ROUTER_FLAG_PARAM", "")
 
-# LAPAK_FAKE=1 runs everything against an offline fake (no AWS calls, no cost). For tests only.
-FAKE = os.environ.get("LAPAK_FAKE") == "1"
+# FAKE_BEDROCK=1 runs everything against an offline fake (no AWS calls, no cost). For tests only.
+FAKE = os.environ.get("FAKE_BEDROCK") == "1"

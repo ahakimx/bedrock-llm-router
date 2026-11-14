@@ -7,6 +7,6 @@ export AWS_REGION="${AWS_REGION:-us-east-1}"
 export PYTHONPATH=src
 for mode in baseline router cache router-cache; do
   echo "== $mode"
-  python3 -m lapak.evaluate --mode "$mode" > /dev/null
+  python3 -m merchantbot.evaluate --mode "$mode" > /dev/null
 done
-python3 -m lapak.report | tee results/report.md
+python3 -m merchantbot.report | tee results/report.md

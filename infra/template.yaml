@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Lapak Pesisir merchant assistant: a cost-aware LLM router on Amazon Bedrock
+  Marketplace merchant assistant: a cost-aware LLM router on Amazon Bedrock
   (small-model router + prompt caching), with per-request cost metrics.
 
 Parameters:
@@ -36,7 +36,7 @@ Resources:
     Properties:
       FunctionName: !Sub ${AWS::StackName}-assistant
       CodeUri: ../src
-      Handler: lapak.handler.handler
+      Handler: merchantbot.handler.handler
       Runtime: python3.13
       Architectures: [arm64]
       MemorySize: 512
@@ -83,7 +83,7 @@ Resources:
     Properties:
       AlarmName: !Sub ${AWS::StackName}-router-fallbacks
       AlarmDescription: Router failing; all traffic is going to the primary model.
-      Namespace: LapakPesisir/Assistant
+      Namespace: MerchantAssistant
       MetricName: RouterFallback
       Dimensions:
         - Name: Route

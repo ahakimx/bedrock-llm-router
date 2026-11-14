@@ -32,7 +32,7 @@ def flags() -> dict:
 def emf(r: dict) -> str:
     return json.dumps({
         "_aws": {"Timestamp": int(time.time() * 1000), "CloudWatchMetrics": [{
-            "Namespace": "LapakPesisir/Assistant",
+            "Namespace": "MerchantAssistant",
             "Dimensions": [["Route"]],
             "Metrics": [{"Name": "CostUSD", "Unit": "None"}, {"Name": "LatencyMs", "Unit": "Milliseconds"},
                         {"Name": "CacheReadTokens", "Unit": "Count"}, {"Name": "RouterFallback", "Unit": "Count"}],

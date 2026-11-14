@@ -1,4 +1,4 @@
-"""Offline stand-in for bedrock-runtime, used by tests and by LAPAK_FAKE=1.
+"""Offline stand-in for bedrock-runtime, used by tests and by FAKE_BEDROCK=1.
 
 It is NOT a model. Answers are built from the golden dataset so the whole pipeline (routing,
 caching, grading, cost, report) can be exercised without AWS. To mimic a weaker small model, the

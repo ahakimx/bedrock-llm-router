@@ -3,20 +3,20 @@
 {"id": "q03", "label": "simple", "question": "Is there a monthly fee to open a store?", "expect": [["no monthly fee", "free", "gratis", "tidak ada biaya bulanan", "no fee", "there is no"]]}
 {"id": "q04", "label": "simple", "question": "What is the service fee per completed order?", "expect": [["4%", "4 percent", "4 persen"]]}
 {"id": "q05", "label": "simple", "question": "How much is the extra handling fee for a cash on delivery order?", "expect": [["1500"]]}
-{"id": "q06", "label": "simple", "question": "Until what time does Kurir Pesisir operate?", "expect": [["20:00", "20.00", "8 pm", "8pm", "8:00 pm"]]}
+{"id": "q06", "label": "simple", "question": "Until what time does the local courier (Kurir Lokal) operate?", "expect": [["20:00", "20.00", "8 pm", "8pm", "8:00 pm"]]}
 {"id": "q07", "label": "simple", "question": "How many photos does each product need?", "expect": [["3", "three", "tiga"]]}
-{"id": "q08", "label": "simple", "question": "Can I sell e-cigarettes on Lapak Pesisir?", "expect": [["not allowed", "prohibited", "no,", "cannot", "can't", "tidak boleh", "dilarang", "not permitted"]]}
+{"id": "q08", "label": "simple", "question": "Can I sell e-cigarettes on the marketplace?", "expect": [["not allowed", "prohibited", "no,", "cannot", "can't", "tidak boleh", "dilarang", "not permitted"]]}
 {"id": "q09", "label": "simple", "question": "Is there a fee to withdraw to a Mandiri account?", "expect": [["free", "no fee", "gratis", "no charge", "tidak dikenakan"]]}
 {"id": "q10", "label": "simple", "question": "Berapa batas waktu upload nomor resi setelah paket diserahkan ke kurir?", "expect": [["6 jam", "6 hours", "enam jam", "six hours"]]}
 {"id": "q11", "label": "simple", "question": "What is the return window for songket?", "expect": [["7 days", "7 hari", "seven days"]]}
 {"id": "q12", "label": "simple", "question": "How long do I have to accept a new order?", "expect": [["24 hours", "24 jam", "24-hour"]]}
 {"id": "q13", "label": "simple", "question": "How many times can I withdraw per day?", "expect": [["3", "three", "tiga"]]}
-{"id": "q14", "label": "simple", "question": "When does the Gebyar Pesisir campaign run?", "expect": [["10"]]}
-{"id": "q15", "label": "simple", "question": "Will Lapak Pesisir staff ever ask for my OTP code?", "expect": [["never", "tidak pernah", "will not", "won't"]]}
+{"id": "q14", "label": "simple", "question": "When does the Mega Sale campaign run?", "expect": [["10"]]}
+{"id": "q15", "label": "simple", "question": "Will marketplace staff ever ask for my OTP code?", "expect": [["never", "tidak pernah", "will not", "won't"]]}
 {"id": "q16", "label": "simple", "question": "What is the maximum processing time for woven crafts?", "expect": [["5 working days", "5 hari kerja", "five working days"]]}
 {"id": "q17", "label": "simple", "question": "What are the help desk hours?", "expect": [["08:00", "8:00", "08.00", "8 am", "8am"]]}
 {"id": "q18", "label": "simple", "question": "Do I need a business license to open a second store?", "expect": [["nib", "business license", "izin usaha"]]}
-{"id": "q19", "label": "complex", "question": "A buyer orders kerupuk for Rp200,000 plus Rp20,000 shipping and pays with cash on delivery. How much will I pay Lapak Pesisir in fees for this order?", "expect": [["9500"]]}
+{"id": "q19", "label": "complex", "question": "A buyer orders kerupuk for Rp200,000 plus Rp20,000 shipping and pays with cash on delivery. How much will I pay the marketplace in fees for this order?", "expect": [["9500"]]}
 {"id": "q20", "label": "complex", "question": "I am a Mitra Unggulan merchant and my completed orders this week total Rp1,000,000 in product price. How much is my service fee?", "expect": [["30000"]]}
 {"id": "q21", "label": "complex", "question": "Pembeli menerima kue basah dalam kondisi rusak, tapi baru komplain 30 jam setelah paket diterima. Apakah retur masih bisa diterima?", "expect": [["tidak", "no", "not", "sudah lewat", "melewati", "exceeded", "outside"]]}
 {"id": "q22", "label": "complex", "question": "A buyer changed their mind about a jar of sambal and wants to return it. Can they, and who pays the return shipping?", "expect": [["cannot", "can't", "not be returned", "tidak bisa", "not allowed", "no,"]]}

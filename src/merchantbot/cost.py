@@ -17,7 +17,7 @@ def prices(model_id: str) -> dict:
     try:
         return _PRICES[base_model(model_id)]
     except KeyError:
-        raise KeyError(f"No price for {model_id}. Add it to src/lapak/data/pricing.json") from None
+        raise KeyError(f"No price for {model_id}. Add it to src/merchantbot/data/pricing.json") from None
 
 
 def cost_usd(usage: dict, model_id: str) -> float:

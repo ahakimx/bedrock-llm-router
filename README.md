@@ -3,10 +3,10 @@
 Send easy questions to a cheap model, hard ones to a stronger model, cache the long system prompt, and
 measure whether any of it actually saves money without hurting answer quality.
 
-This is a hands-on project: you build the merchant-support chatbot for **Lapak Pesisir**, an e-commerce
-marketplace for small coastal businesses in Indonesia. Merchants ask about fees, payouts, shipping, and
-returns, in Indonesian or English, and every answer must come from a ~2,000-token merchant guide. The
-guide and the 30 test questions ship with the repo, so you can run everything end to end yourself.
+This is a hands-on project from a merchant-support chatbot I'm developing for an e-commerce marketplace
+of small Indonesian sellers. Merchants ask about fees, payouts, shipping, and returns, in Indonesian or
+English, and every answer must come from a ~2,000-token merchant guide. A sample guide and 30 test
+questions ship with the repo, so you can run everything end to end yourself.
 
 ```
 merchant question
@@ -24,11 +24,11 @@ What is in the repo:
 
 | Path | What it does |
 |---|---|
-| `src/lapak/router.py` | Classifies a question as `simple` or `complex` with a forced tool call; falls back to the primary model on any error |
-| `src/lapak/assistant.py` | Answers from the guide; puts a `cachePoint` after the static prefix |
-| `src/lapak/evaluate.py` | Runs the 30-question golden dataset in one of four modes and records quality, cost, latency |
-| `src/lapak/report.py` | Comparison table and break-even point for the router |
-| `src/lapak/handler.py` | Lambda handler with an SSM feature flag and EMF cost metrics |
+| `src/merchantbot/router.py` | Classifies a question as `simple` or `complex` with a forced tool call; falls back to the primary model on any error |
+| `src/merchantbot/assistant.py` | Answers from the guide; puts a `cachePoint` after the static prefix |
+| `src/merchantbot/evaluate.py` | Runs the 30-question golden dataset in one of four modes and records quality, cost, latency |
+| `src/merchantbot/report.py` | Comparison table and break-even point for the router |
+| `src/merchantbot/handler.py` | Lambda handler with an SSM feature flag and EMF cost metrics |
 | `infra/template.yaml` | SAM template: function, least-privilege IAM, log group, flag, fallback alarm |
 | `data/golden.jsonl` | 30 questions with expected facts and a `simple`/`complex` label |
 
@@ -46,9 +46,9 @@ pip install -r requirements-dev.txt
 ## 1. Check the pipeline offline (no AWS, no cost)
 
 ```bash
-LAPAK_FAKE=1 python -m pytest -q
-LAPAK_FAKE=1 PYTHONPATH=src python -m lapak.evaluate --mode baseline
-LAPAK_FAKE=1 PYTHONPATH=src python -m lapak.report --fake
+FAKE_BEDROCK=1 python -m pytest -q
+FAKE_BEDROCK=1 PYTHONPATH=src python -m merchantbot.evaluate --mode baseline
+FAKE_BEDROCK=1 PYTHONPATH=src python -m merchantbot.report --fake
 ```
 
 The fake client is not a model; it only proves the plumbing works. Do not publish its numbers.
@@ -73,7 +73,7 @@ plus the router's **break-even point**: the share of questions that must go to t
 the router's own cost is paid back. Per-question details are in `results/<mode>.jsonl`; look at the
 `failed` and `misroutes` lists in `results/<mode>.summary.json` before trusting the averages.
 
-Run a single mode with `PYTHONPATH=src python -m lapak.evaluate --mode router --limit 5`.
+Run a single mode with `PYTHONPATH=src python -m merchantbot.evaluate --mode router --limit 5`.
 
 ## 3. Deploy the Lambda version
 
@@ -87,9 +87,9 @@ The response shows the route, the model that answered, and the cost of that requ
 
 ### Verify
 
-Per-request metrics land in CloudWatch under the `LapakPesisir/Assistant` namespace (`CostUSD`,
+Per-request metrics land in CloudWatch under the `MerchantAssistant` namespace (`CostUSD`,
 `LatencyMs`, `CacheReadTokens`, `RouterFallback`, by `Route`). To see cost by model in Logs Insights
-(log group `/aws/lambda/lapak-assistant-assistant`):
+(log group `/aws/lambda/merchant-assistant-assistant`):
 
 ```
 fields @timestamp, Route, model, CostUSD, LatencyMs, CacheReadTokens
@@ -100,7 +100,7 @@ fields @timestamp, Route, model, CostUSD, LatencyMs, CacheReadTokens
 Switch the router off without a deploy (picked up within a minute):
 
 ```bash
-aws ssm put-parameter --name /lapak-assistant/router-flags --overwrite \
+aws ssm put-parameter --name /merchant-assistant/router-flags --overwrite \
   --value '{"router": false, "cache": true}'
 ```
 
@@ -130,7 +130,7 @@ money while idle; the only charges are Bedrock tokens per request and CloudWatch
 - Grading is keyword-based: good enough to catch missing facts and wrong numbers, not tone or
   completeness. For a real launch, add human review or an LLM-as-a-judge pass on a sample.
 - 30 questions is a smoke test, not a benchmark. Re-run with your own traffic before deciding.
-- Prices live in `src/lapak/data/pricing.json`; check the
+- Prices live in `src/merchantbot/data/pricing.json`; check the
   [Amazon Bedrock pricing page](https://aws.amazon.com/bedrock/pricing/) before you publish numbers.
 
 ## License

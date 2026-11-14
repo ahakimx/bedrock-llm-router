@@ -1,7 +1,7 @@
 """Run the golden dataset through one mode and record answers, quality, cost, and latency.
 
-    python -m lapak.evaluate --mode baseline
-    python -m lapak.evaluate --mode router-cache
+    python -m merchantbot.evaluate --mode baseline
+    python -m merchantbot.evaluate --mode router-cache
 """
 import argparse
 import json

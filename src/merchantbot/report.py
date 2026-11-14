@@ -1,7 +1,7 @@
 """Compare the four modes and work out when the router pays for itself.
 
-    python -m lapak.report            # real results
-    python -m lapak.report --fake     # results from LAPAK_FAKE=1 runs
+    python -m merchantbot.report            # real results
+    python -m merchantbot.report --fake     # results from FAKE_BEDROCK=1 runs
 """
 import argparse
 import json
@@ -72,7 +72,7 @@ def main():
     a = ap.parse_args()
     data = load(a.fake)
     if not data:
-        raise SystemExit("No results yet. Run: python -m lapak.evaluate --mode baseline")
+        raise SystemExit("No results yet. Run: python -m merchantbot.evaluate --mode baseline")
     if a.fake:
         print("> Offline fake results: these numbers only prove the pipeline works.\n")
     print(table(data))

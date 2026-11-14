@@ -2,7 +2,7 @@
 # Builds and deploys the Lambda assistant with AWS SAM.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-STACK="${STACK:-lapak-assistant}"
+STACK="${STACK:-merchant-assistant}"
 REGION="${AWS_REGION:-us-east-1}"
 sam build --template-file infra/template.yaml
 sam deploy --stack-name "$STACK" --region "$REGION" --resolve-s3 \
