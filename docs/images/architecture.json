@@ -1,6 +1,6 @@
 {
  "w": 1000,
- "h": 470,
+ "h": 490,
  "groups": [
   {
    "type": "region",
@@ -8,7 +8,7 @@
    "x": 160,
    "y": 24,
    "w": 820,
-   "h": 432
+   "h": 448
   },
   {
    "type": "generic",
@@ -16,7 +16,7 @@
    "x": 390,
    "y": 52,
    "w": 570,
-   "h": 305
+   "h": 312
   }
  ],
  "nodes": [
@@ -44,16 +44,16 @@
    "label": "SSM Parameter",
    "sub": "router / cache flags",
    "x": 270,
-   "y": 390,
+   "y": 405,
    "step": 2
   },
   {
    "id": "router",
    "icon": "nova",
    "label": "Router",
-   "sub": "Nova Micro \u00b7 forced tool call",
+   "sub": "Nova Micro · forced tool call",
    "x": 480,
-   "y": 205,
+   "y": 209,
    "step": 3
   },
   {
@@ -71,16 +71,16 @@
    "label": "Nova 2 Lite",
    "sub": "complex + fallback",
    "x": 720,
-   "y": 300,
+   "y": 310,
    "step": 4
   },
   {
    "id": "guide",
    "icon": "document",
    "label": "Merchant guide",
-   "sub": "~2K tokens \u00b7 cachePoint",
+   "sub": "~2.5K tokens · cachePoint",
    "x": 895,
-   "y": 205,
+   "y": 209,
    "step": 5
   },
   {
@@ -89,16 +89,16 @@
    "label": "CloudWatch",
    "sub": "EMF: CostUSD, LatencyMs",
    "x": 520,
-   "y": 400,
+   "y": 415,
    "step": 6
   },
   {
    "id": "alarm",
    "icon": "cw-alarm",
    "label": "Fallback alarm",
-   "sub": "\u2265 5 in 5 min",
+   "sub": "≥ 5 in 5 min",
    "x": 800,
-   "y": 400,
+   "y": 415,
    "step": 6
   }
  ],

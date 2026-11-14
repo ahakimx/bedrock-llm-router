@@ -9,8 +9,8 @@ every answer must come from a ~2,500-token merchant guide (also in Indonesian). 
 questions ship with the repo, so you can run everything end to end yourself.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/images/architecture-dark.svg">
-  <img alt="Merchant question goes to a Lambda function; a Nova Micro router sends simple questions to Nova Micro and complex ones (or router errors) to Nova 2 Lite; the merchant guide is a cached prefix; per-request cost goes to CloudWatch with a fallback alarm." src="docs/images/architecture.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/architecture-dark.png">
+  <img alt="Merchant question goes to a Lambda function; a Nova Micro router sends simple questions to Nova Micro and complex ones (or router errors) to Nova 2 Lite; the merchant guide is a cached prefix; per-request cost goes to CloudWatch with a fallback alarm." src="docs/images/architecture.png" width="100%">
 </picture>
 
 What is in the repo:
