@@ -4,8 +4,8 @@ Send easy questions to a cheap model, hard ones to a stronger model, cache the l
 measure whether any of it actually saves money without hurting answer quality.
 
 This is a hands-on project from a merchant-support chatbot I'm developing for an e-commerce marketplace
-of small Indonesian sellers. Merchants ask about fees, payouts, shipping, and returns, in Indonesian or
-English, and every answer must come from a ~2,000-token merchant guide. A sample guide and 30 test
+of small Indonesian sellers. Merchants ask about fees, payouts, shipping, and returns in Indonesian, and
+every answer must come from a ~2,500-token merchant guide (also in Indonesian). A sample guide and 30 test
 questions ship with the repo, so you can run everything end to end yourself.
 
 <picture>
@@ -19,7 +19,7 @@ What is in the repo:
 |---|---|
 | `src/merchantbot/router.py` | Classifies a question as `simple` or `complex` with a forced tool call; falls back to the primary model on any error |
 | `src/merchantbot/assistant.py` | Answers from the guide; puts a `cachePoint` after the static prefix |
-| `src/merchantbot/evaluate.py` | Runs the 30-question golden dataset in one of four modes and records quality, cost, latency |
+| `src/merchantbot/evaluate.py` | Runs the 30-question golden dataset in one of five modes (four of ours plus Bedrock Intelligent Prompt Routing for comparison) and records quality, cost, latency |
 | `src/merchantbot/report.py` | Comparison table and break-even point for the router |
 | `src/merchantbot/handler.py` | Lambda handler with an SSM feature flag and EMF cost metrics |
 | `infra/template.yaml` | SAM template: function, least-privilege IAM, log group, flag, fallback alarm |
@@ -28,7 +28,8 @@ What is in the repo:
 ## Prerequisites
 
 - An AWS account, Region **us-east-1** (the code uses the `us.` cross-Region inference profiles).
-- In the Bedrock console, **Model access** enabled for **Amazon Nova Micro** and **Amazon Nova 2 Lite**.
+- In the Bedrock console, **Model access** enabled for **Amazon Nova Micro** and **Amazon Nova 2 Lite**
+  (plus **Amazon Nova Lite** and **Nova Pro** for the optional Intelligent Prompt Routing comparison).
 - Python 3.11+, AWS CLI v2, and (for the Lambda part) AWS SAM CLI.
 
 ```bash
@@ -53,14 +54,20 @@ export AWS_REGION=us-east-1
 scripts/run-experiment.sh
 ```
 
-It runs the dataset four times and prints a table like this (fill it with your own numbers):
+It runs the dataset through our four setups, then through Bedrock Intelligent Prompt Routing (the
+default Nova router, Nova Lite / Nova Pro) as a reference, and prints a table like this:
 
-| | All to primary | Primary + caching | Router | Router + caching |
-|---|---|---|---|---|
-| Cost per 1,000 questions | | | | |
-| Golden pass rate | | | | |
-| Latency p50 / p90 | | | | |
-| Answered by small model | 0% | 0% | | |
+| | All to primary | Primary + caching | Router | Router + caching | Bedrock IPR |
+|---|---|---|---|---|---|
+| Cost per 1,000 questions | | | | | |
+| Golden pass rate | | | | | |
+| Latency p50 / p90 | | | | | |
+| Answered by the cheaper model | 0% | 0% | | | |
+| Misrouted (vs. golden label) | – | – | | | |
+
+Compare Bedrock IPR with the **Router** column (neither caches). Skip it with `SKIP_IPR=1`; if your
+account has no default Nova prompt router or no Nova Lite/Pro access, the script carries on without it.
+Point it at a router you configured yourself with `IPR_ROUTER_ARN=...`.
 
 plus the router's **break-even point**: the share of questions that must go to the small model before
 the router's own cost is paid back. Per-question details are in `results/<mode>.jsonl`; look at the
@@ -72,8 +79,10 @@ Run a single mode with `PYTHONPATH=src python -m merchantbot.evaluate --mode rou
 
 ```bash
 scripts/deploy.sh
-scripts/ask.sh "What is the minimum withdrawal?"
-scripts/ask.sh "A buyer orders kerupuk for Rp200,000 plus Rp20,000 shipping and pays COD. What are my fees?"
+# "What is the minimum withdrawal?"
+scripts/ask.sh "Berapa minimal penarikan saldo?"
+# "A buyer orders kerupuk for Rp200,000 plus Rp20,000 shipping and pays COD. What do I pay in fees?"
+scripts/ask.sh "Pembeli pesan kerupuk Rp200.000 ditambah ongkir Rp20.000 dan bayar COD. Berapa biaya yang saya bayar?"
 ```
 
 The response shows the route, the model that answered, and the cost of that request.
@@ -116,7 +125,7 @@ Rough numbers with us-east-1 list prices (check the pricing page; your token cou
 
 | Activity | Estimate |
 |---|---|
-| One full `run-experiment.sh` (4 modes × 30 questions, ~120 Bedrock calls + 60 router calls) | about US$0.05–0.10 |
+| One full `run-experiment.sh` (5 modes × 30 questions: 150 answers + 60 router calls) | about US$0.10–0.20 |
 | Lambda, SSM, logs during a short test | effectively $0 (free tier / a few cents) |
 | CloudWatch alarm | US$0.10 per alarm-month, prorated; gone after cleanup |
 | Offline tests (`FAKE_BEDROCK=1`) | $0 |

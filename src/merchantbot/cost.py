@@ -6,7 +6,12 @@ _PRICES = json.loads((pathlib.Path(__file__).parent / "data" / "pricing.json").r
 
 
 def base_model(model_id: str) -> str:
-    """us.amazon.nova-micro-v1:0 -> amazon.nova-micro-v1:0 (profiles are priced like the base model)."""
+    """us.amazon.nova-micro-v1:0 -> amazon.nova-micro-v1:0 (profiles are priced like the base model).
+
+    Also accepts the ARN a prompt router reports, e.g. arn:aws:bedrock:...:inference-profile/us.amazon.nova-lite-v1:0.
+    """
+    if model_id.startswith("arn:"):
+        model_id = model_id.rsplit("/", 1)[-1]
     for prefix in ("global.", "us.", "eu.", "apac.", "jp.", "au."):
         if model_id.startswith(prefix):
             return model_id[len(prefix):]

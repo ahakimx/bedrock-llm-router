@@ -10,9 +10,9 @@ GUIDE = (pathlib.Path(__file__).parent / "data" / "merchant_guide.md").read_text
 
 INSTRUCTIONS = (
     "You are the merchant-support assistant for an online marketplace. Answer only from the merchant guide below. "
-    "Reply in the language the merchant used (Indonesian or English). Keep answers under 120 words. "
+    "Merchants write in Indonesian; always reply in Indonesian. Keep answers under 120 words. "
     "For fees, discounts, or deadlines, show the calculation or the rule number you used. "
-    "If the guide does not cover the question, say so and give the help desk contact."
+    "If the guide does not cover the question, say so and point the merchant to the help desk."
 )
 
 
@@ -47,4 +47,7 @@ def answer(brt, question: str, model: str, cache: bool) -> Call:
         inferenceConfig={"maxTokens": config.MAX_ANSWER_TOKENS, "temperature": 0},
     )
     text = "".join(b.get("text", "") for b in r["output"]["message"]["content"])
-    return Call(model, text, r["usage"], int((time.perf_counter() - t0) * 1000))
+    # When `model` is a Bedrock prompt router, the model that actually answered (and sets the price)
+    # is in the trace.
+    used = r.get("trace", {}).get("promptRouter", {}).get("invokedModelId", model)
+    return Call(used, text, r["usage"], int((time.perf_counter() - t0) * 1000))

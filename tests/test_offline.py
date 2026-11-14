@@ -45,19 +45,19 @@ def test_router_falls_back_when_the_router_fails():
                 raise RuntimeError("ThrottlingException")
             return super().converse(**kw)
 
-    d = router.route(Broken(), "What is the minimum withdrawal?")
+    d = router.route(Broken(), "Berapa minimal penarikan saldo?")
     assert (d.model, d.reason, d.call) == (config.PRIMARY_MODEL, "router-error", None)
 
 
 def test_router_sends_simple_questions_to_the_small_model():
-    d = router.route(FakeBedrock(), "What is the minimum amount I can withdraw from my balance?")
+    d = router.route(FakeBedrock(), "Berapa minimal penarikan saldo?")
     assert (d.label, d.model) == ("simple", config.SMALL_MODEL)
 
 
 def test_misrouted_complex_question_fails_quality(tmp_path):
     # The fake small model cannot answer complex questions: a misroute must show up as a failed answer.
     from merchantbot.service import ask
-    q = "My store score has been 55 for the last two weeks. What happens to my store?"
+    q = "Skor toko saya 55 selama dua minggu terakhir. Apa akibatnya untuk toko saya?"
 
     class AlwaysSimple(FakeBedrock):
         def converse(self, **kw):
@@ -67,19 +67,21 @@ def test_misrouted_complex_question_fails_quality(tmp_path):
             return r
 
     r = ask(AlwaysSimple(), q, use_router=True, use_cache=False)
-    assert r["small_model"] and not grade(r["answer"], [["campaign"]])
+    assert r["small_model"] and not grade(r["answer"], [["kampanye"]])
 
 
 def test_all_modes_end_to_end(tmp_path):
-    out = {m: evaluate.run(m, out_dir=tmp_path, quiet=True) for m in ("baseline", "cache", "router", "router-cache")}
+    out = {m: evaluate.run(m, out_dir=tmp_path, quiet=True) for m in ("baseline", "cache", "router", "router-cache", "bedrock-ipr")}
     assert out["baseline"]["share_small"] == 0
     assert out["router"]["share_small"] > 0.3
     assert out["cache"]["cache_read_tokens"] > 0 and out["baseline"]["cache_read_tokens"] == 0
     assert out["router-cache"]["cost_per_1k_usd"] < out["router"]["cost_per_1k_usd"] < out["baseline"]["cost_per_1k_usd"]
+    ipr = out["bedrock-ipr"]
+    assert 0 < ipr["share_small"] < 1 and ipr["router_cost_usd"] == 0 and ipr["cost_usd"] > 0
 
 
 def test_lambda_handler():
-    r = handler.handler({"question": "How many times can I withdraw per day?"}, None)
+    r = handler.handler({"question": "Berapa kali saya boleh tarik saldo dalam sehari?"}, None)
     assert r["statusCode"] == 200 and r["route"] == "simple" and r["cost_usd"] > 0
     assert handler.handler({"question": ""}, None)["statusCode"] == 400
 
@@ -99,6 +101,49 @@ def test_requests_match_the_converse_api_schema():
     with Stubber(c) as st:
         st.add_response("converse", tool)
         st.add_response("converse", text)
-        d = router.route(c, "Why was my balance frozen?")
-        a = assistant.answer(c, "Why was my balance frozen?", d.model, cache=True)
+        d = router.route(c, "Kenapa saldo saya dibekukan?")
+        a = assistant.answer(c, "Kenapa saldo saya dibekukan?", d.model, cache=True)
     assert d.model == config.PRIMARY_MODEL and a.usage["cacheReadInputTokens"] == 100
+
+
+def test_cost_from_prompt_router_trace():
+    arn = "arn:aws:bedrock:us-east-1:123456789012:inference-profile/us.amazon.nova-lite-v1:0"
+    assert cost.base_model(arn) == "amazon.nova-lite-v1:0"
+    assert cost.prices(arn) == cost.prices("amazon.nova-lite-v1:0")
+
+
+def test_ipr_requests_match_the_api_schema(monkeypatch):
+    """The managed-router comparison: router lookup and a Converse call through the router ARN."""
+    import boto3
+    from botocore.stub import Stubber
+    from merchantbot import service
+
+    router_arn = "arn:aws:bedrock:us-east-1:123456789012:default-prompt-router/amazon.nova:1"
+    ctl = boto3.client("bedrock", region_name="us-east-1", aws_access_key_id="x", aws_secret_access_key="y")
+    rt = boto3.client("bedrock-runtime", region_name="us-east-1", aws_access_key_id="x", aws_secret_access_key="y")
+    monkeypatch.setattr(config, "FAKE", False)
+    monkeypatch.setattr(config, "IPR_ROUTER_ARN", "")
+    monkeypatch.setattr(boto3, "client", lambda svc, **kw: ctl)
+    lst = {"promptRouterSummaries": [
+        {"promptRouterName": "Meta Prompt Router", "type": "default", "status": "AVAILABLE",
+         "promptRouterArn": "arn:aws:bedrock:us-east-1:123456789012:default-prompt-router/meta.llama:1",
+         "models": [{"modelArn": "a"}], "fallbackModel": {"modelArn": "a"}, "routingCriteria": {"responseQualityDifference": 0.5}},
+        {"promptRouterName": "Nova Prompt Router", "type": "default", "status": "AVAILABLE", "promptRouterArn": router_arn,
+         "models": [{"modelArn": "a"}], "fallbackModel": {"modelArn": "a"}, "routingCriteria": {"responseQualityDifference": 0.5}}]}
+    resp = {"output": {"message": {"role": "assistant", "content": [{"text": "Rp50.000"}]}}, "stopReason": "end_turn",
+            "usage": {"inputTokens": 2000, "outputTokens": 20, "totalTokens": 2020}, "metrics": {"latencyMs": 1},
+            "trace": {"promptRouter": {"invokedModelId":
+                      "arn:aws:bedrock:us-east-1:123456789012:inference-profile/us.amazon.nova-lite-v1:0"}}}
+    with Stubber(ctl) as sc, Stubber(rt) as sr:
+        sc.add_response("list_prompt_routers", lst, {"type": "default"})
+        sr.add_response("converse", resp)
+        r = service.ask(rt, "Berapa minimal penarikan saldo?", None, False)
+        sc.assert_no_pending_responses()   # the router ARN was looked up through ListPromptRouters
+        sr.assert_no_pending_responses()
+    assert r["route_reason"] == "bedrock-ipr" and r["small_model"] and r["model"] == "us.amazon.nova-lite-v1:0"
+    assert r["cost_usd"] == cost.cost_usd({"inputTokens": 2000, "outputTokens": 20}, "amazon.nova-lite-v1:0")
+
+
+def test_router_examples_are_not_in_the_golden_set():
+    golden = {g["question"] for g in evaluate.load_golden()}
+    assert not any(q in router.ROUTER_SYSTEM for q in golden)

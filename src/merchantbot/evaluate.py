@@ -29,7 +29,7 @@ def pct(values, q):
 
 def summarize(mode, rows):
     n = len(rows)
-    routed = [r for r in rows if r["route_reason"] == "classified"]
+    routed = [r for r in rows if r["route_reason"] in ("classified", "bedrock-ipr")]
     misroutes = [r["id"] for r in routed if r["route"] != r["label"]]
     return {
         "mode": mode,

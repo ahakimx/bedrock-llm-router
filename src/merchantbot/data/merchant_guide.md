@@ -1,165 +1,171 @@
-# Merchant Guide
+# Panduan Merchant
 
-This guide covers an online marketplace for small businesses in a coastal town in Indonesia. Merchants sell
-local food, seafood products, snacks, crafts, and clothing. This guide is the only source of truth for the merchant
-assistant. If a question is not covered here, the assistant must say so and point the merchant to the help desk.
+Panduan ini berlaku untuk marketplace online bagi usaha kecil di sebuah kota pesisir di Indonesia. Merchant menjual
+makanan lokal, olahan hasil laut, camilan, kerajinan, dan pakaian. Panduan ini adalah satu-satunya sumber jawaban bagi
+asisten merchant. Jika sebuah pertanyaan tidak dibahas di sini, asisten wajib mengatakannya dan mengarahkan merchant ke
+help desk.
 
-## 1. Account and verification
+## 1. Akun dan verifikasi
 
-1.1 A merchant account needs a valid Indonesian ID card (KTP), an active WhatsApp number, and a bank account in the
-same name as the ID card.
+1.1 Akun merchant membutuhkan KTP yang masih berlaku, nomor WhatsApp yang aktif, dan rekening bank atas nama yang sama
+dengan KTP.
 
-1.2 Verification takes up to 2 working days. Merchants can list products while verification is pending, but products
-stay hidden from buyers until the account is verified.
+1.2 Verifikasi memakan waktu paling lama 2 hari kerja. Merchant boleh mengunggah produk selama verifikasi berjalan,
+tetapi produk tidak tampil ke pembeli sampai akun terverifikasi.
 
-1.3 A merchant may operate one store per ID card. Opening a second store requires a business license (NIB).
+1.3 Satu KTP hanya boleh dipakai untuk satu toko. Membuka toko kedua membutuhkan Nomor Induk Berusaha (NIB).
 
-1.4 The store name may not contain the words "official", "resmi", or a brand name the merchant does not own.
+1.4 Nama toko tidak boleh memuat kata "official", "resmi", atau nama merek yang bukan milik merchant.
 
-1.5 A store that receives no order and no product update for 90 days is marked "inactive" and hidden from search.
-It becomes active again after the merchant updates any product.
+1.5 Toko yang tidak menerima pesanan dan tidak memperbarui produk selama 90 hari ditandai "tidak aktif" dan disembunyikan
+dari pencarian. Toko aktif kembali setelah merchant memperbarui produk apa pun.
 
-## 2. Fees
+## 2. Biaya
 
-2.1 Listing products is free. There is no monthly fee.
+2.1 Mengunggah produk gratis. Tidak ada biaya bulanan.
 
-2.2 The marketplace charges a service fee of 4% of the product price for every completed order. Shipping cost is not
-included in the fee calculation.
+2.2 Marketplace memotong biaya layanan sebesar 4% dari harga produk untuk setiap pesanan yang selesai. Ongkos kirim
+tidak ikut dihitung dalam biaya layanan.
 
-2.3 Orders paid with cash on delivery (COD) carry an extra handling fee of Rp1,500 per order, paid by the merchant.
+2.3 Pesanan dengan pembayaran di tempat (COD) dikenakan biaya penanganan tambahan Rp1.500 per pesanan, ditanggung
+merchant.
 
-2.4 Merchants in the "Mitra Unggulan" (featured partner) program pay a service fee of 3% instead of 4%. To qualify, a
-store needs at least 50 completed orders in the last 30 days and an average rating of 4.7 or higher.
+2.4 Merchant program "Mitra Unggulan" membayar biaya layanan 3%, bukan 4%. Syaratnya: minimal 50 pesanan selesai dalam
+30 hari terakhir dan rating rata-rata 4,7 atau lebih.
 
-2.5 Promotions funded by the marketplace (for example the monthly "Mega Sale" campaign) do not reduce the merchant's payout.
-Promotions funded by the merchant reduce the payout by the discount amount.
+2.5 Promo yang didanai marketplace (misalnya kampanye bulanan "Mega Sale") tidak mengurangi dana yang diterima merchant.
+Promo yang didanai merchant mengurangi dana yang diterima sebesar nilai diskonnya.
 
-## 3. Payouts
+## 3. Pencairan dana
 
-3.1 Funds from a completed order enter the merchant balance 1 working day after the buyer confirms receipt, or
-3 days after delivery if the buyer does not confirm.
+3.1 Dana dari pesanan selesai masuk ke saldo merchant 1 hari kerja setelah pembeli mengonfirmasi penerimaan, atau
+3 hari setelah paket terkirim jika pembeli tidak mengonfirmasi.
 
-3.2 The minimum withdrawal is Rp50,000. There is no maximum.
+3.2 Penarikan saldo minimal Rp50.000. Tidak ada batas maksimal.
 
-3.3 Withdrawals requested before 14:00 WIB on a working day are transferred the same day. Requests after 14:00 WIB are
-transferred the next working day.
+3.3 Penarikan yang diajukan sebelum pukul 14.00 WIB pada hari kerja ditransfer di hari yang sama. Pengajuan setelah
+pukul 14.00 WIB ditransfer pada hari kerja berikutnya.
 
-3.4 Withdrawals to BRI, BNI, Mandiri, and the regional development bank (BPD) are free. Withdrawals to other banks
-cost Rp2,500 each.
+3.4 Penarikan ke BRI, BNI, Mandiri, dan Bank Pembangunan Daerah (BPD) gratis. Penarikan ke bank lain dikenakan biaya
+Rp2.500 per transaksi.
 
-3.5 A merchant may withdraw at most 3 times per day.
+3.5 Merchant boleh menarik saldo paling banyak 3 kali per hari.
 
-3.6 Balances that are frozen because of an open dispute cannot be withdrawn until the dispute is closed.
+3.6 Saldo yang dibekukan karena sengketa yang masih berjalan tidak bisa ditarik sampai sengketa selesai.
 
-## 4. Product listing rules
+## 4. Aturan unggah produk
 
-4.1 Every product needs at least 3 photos taken from different angles, a title of 10 to 70 characters, and a
-description of at least 20 words.
+4.1 Setiap produk wajib punya minimal 3 foto dari sudut yang berbeda, judul 10 sampai 70 karakter, dan deskripsi minimal
+20 kata.
 
-4.2 Food products must state the net weight and the expiry date or "best before" period.
+4.2 Produk makanan wajib mencantumkan berat bersih dan tanggal kedaluwarsa atau masa simpan.
 
-4.3 Packaged food must show a halal label or a home-industry food permit (P-IRT number). Fresh seafood sold the same
-day is exempt from the P-IRT requirement but must state the catch or production date.
+4.3 Makanan kemasan wajib memiliki label halal atau izin pangan industri rumah tangga (nomor P-IRT). Hasil laut segar
+yang dijual di hari yang sama dikecualikan dari kewajiban P-IRT, tetapi wajib mencantumkan tanggal tangkap atau
+produksi.
 
-4.4 Prices must include all costs except shipping. Adding "admin fees" at checkout is not allowed.
+4.4 Harga sudah termasuk semua biaya kecuali ongkos kirim. Menambahkan "biaya admin" saat checkout tidak diperbolehkan.
 
-4.5 Products that are rejected by moderation can be edited and resubmitted. Moderation answers within 1 working day.
+4.5 Produk yang ditolak moderasi boleh diedit lalu diajukan ulang. Moderasi memberi jawaban dalam 1 hari kerja.
 
-4.6 Prohibited items: alcoholic drinks, tobacco and e-cigarettes, medicines and herbal products with health claims,
-protected marine species (including sea turtle products and shark fin), live animals, firearms and replicas, and
-counterfeit branded goods.
+4.6 Barang terlarang: minuman beralkohol, rokok dan rokok elektrik, obat-obatan dan produk herbal dengan klaim kesehatan,
+satwa laut yang dilindungi (termasuk produk penyu dan sirip hiu), hewan hidup, senjata api dan replikanya, serta barang
+bermerek palsu.
 
-## 5. Category rules
+## 5. Aturan per kategori
 
-| Category | Max processing time | Return window | Extra requirement |
+| Kategori | Waktu proses maksimal | Batas waktu retur | Syarat tambahan |
 |---|---|---|---|
-| Kerupuk and chips | 2 working days | 2 x 24 hours if damaged | Net weight on the label |
-| Dried and salted fish | 2 working days | 2 x 24 hours if damaged | Production date and vacuum or sealed packaging |
-| Fresh seafood | Same day | 1 x 24 hours if not fresh on arrival | Delivery inside the city only, with cold packaging |
-| Wet cakes (kue basah) | Same day | 1 x 24 hours if damaged | Delivery inside the city only |
-| Dry cakes and cookies | 3 working days | 2 x 24 hours if damaged | Halal label or P-IRT |
-| Sambal and spices | 2 working days | 2 x 24 hours if leaking | Glass jars need bubble wrap |
-| Coffee and tea | 3 working days | 2 x 24 hours if damaged | Roast date for coffee |
-| Woven crafts | 5 working days | 7 days for any defect | Dimensions in the description |
-| Songket and fabric | 5 working days | 7 days for any defect | Exact length and width |
-| Muslim clothing | 3 working days | 7 days for size exchange | Size chart in the photos |
+| Kerupuk dan keripik | 2 hari kerja | 2 x 24 jam jika rusak | Berat bersih di label |
+| Ikan asin dan ikan kering | 2 hari kerja | 2 x 24 jam jika rusak | Tanggal produksi dan kemasan vakum atau tersegel |
+| Hasil laut segar | Hari yang sama | 1 x 24 jam jika tidak segar saat tiba | Hanya kirim dalam kota, dengan kemasan dingin |
+| Kue basah | Hari yang sama | 1 x 24 jam jika rusak | Hanya kirim dalam kota |
+| Kue kering | 3 hari kerja | 2 x 24 jam jika rusak | Label halal atau P-IRT |
+| Sambal dan bumbu | 2 hari kerja | 2 x 24 jam jika bocor | Toples kaca wajib dibungkus bubble wrap |
+| Kopi dan teh | 3 hari kerja | 2 x 24 jam jika rusak | Tanggal sangrai untuk kopi |
+| Kerajinan anyaman | 5 hari kerja | 7 hari untuk cacat apa pun | Ukuran di deskripsi |
+| Songket dan kain | 5 hari kerja | 7 hari untuk cacat apa pun | Panjang dan lebar yang tepat |
+| Busana muslim | 3 hari kerja | 7 hari untuk tukar ukuran | Tabel ukuran di foto |
 
-5.1 "Working days" are Monday to Saturday, excluding national holidays. Sunday is not a working day for the marketplace.
+5.1 "Hari kerja" adalah Senin sampai Sabtu, tidak termasuk hari libur nasional. Hari Minggu bukan hari kerja
+marketplace.
 
-5.2 Pre-order products may set a processing time of up to 14 days. The word "PO" and the processing time must appear
-in the product title.
+5.2 Produk pre-order boleh menetapkan waktu proses sampai 14 hari. Kata "PO" dan waktu prosesnya wajib ada di judul
+produk.
 
-## 6. Orders and shipping
+## 6. Pesanan dan pengiriman
 
-6.1 A merchant must accept or reject a new order within 24 hours. Orders not accepted within 24 hours are cancelled
-automatically and the buyer is refunded.
+6.1 Merchant wajib menerima atau menolak pesanan baru dalam 24 jam. Pesanan yang tidak diterima dalam 24 jam dibatalkan
+otomatis dan dana pembeli dikembalikan.
 
-6.2 After accepting, the merchant must hand the parcel to the courier within the category's processing time.
-Late handover more than 2 times in 30 days lowers the store score.
+6.2 Setelah menerima pesanan, merchant wajib menyerahkan paket ke kurir dalam waktu proses kategori tersebut.
+Terlambat menyerahkan paket lebih dari 2 kali dalam 30 hari menurunkan skor toko.
 
-6.3 Available couriers: JNE, J&T, SiCepat, and "Kurir Lokal" (local motorbike courier for same-day delivery inside
-the city). Kurir Lokal operates 08:00 to 20:00 WIB.
+6.3 Kurir yang tersedia: JNE, J&T, SiCepat, dan "Kurir Lokal" (kurir motor untuk pengiriman di hari yang sama di dalam
+kota). Kurir Lokal beroperasi pukul 08.00 sampai 20.00 WIB.
 
-6.4 Kurir Lokal costs a flat Rp8,000 inside the city and Rp15,000 to the two neighboring towns.
+6.4 Tarif Kurir Lokal Rp8.000 untuk dalam kota dan Rp15.000 ke dua kota tetangga.
 
-6.5 Merchants must upload the courier receipt number (resi) within 6 hours of handover.
+6.5 Merchant wajib mengunggah nomor resi paling lambat 6 jam setelah paket diserahkan ke kurir.
 
-6.6 Fragile items (glass jars, cakes, ceramics) must be marked "fragile" and packed with at least 2 cm of padding.
+6.6 Barang mudah pecah (toples kaca, kue, keramik) wajib ditandai "fragile" dan dikemas dengan bantalan minimal 2 cm.
 
-## 7. Returns, refunds, and disputes
+## 7. Retur, pengembalian dana, dan sengketa
 
-7.1 A buyer can request a return within the category's return window, counted from the delivery time recorded by the
-courier.
+7.1 Pembeli bisa mengajukan retur dalam batas waktu retur kategori, dihitung dari waktu terkirim yang tercatat di kurir.
 
-7.2 The buyer must provide an unboxing video for claims about damaged or missing items. Without an unboxing video,
-the marketplace may reject the claim.
+7.2 Pembeli wajib menyertakan video unboxing untuk klaim barang rusak atau kurang. Tanpa video unboxing, marketplace
+boleh menolak klaim.
 
-7.3 For an approved return, the buyer ships the item back. The marketplace pays the return shipping if the merchant was at
-fault (wrong item, damaged, expired). The buyer pays if they changed their mind, where the category allows it.
+7.3 Untuk retur yang disetujui, pembeli mengirim balik barangnya. Marketplace menanggung ongkos kirim retur jika
+kesalahan ada di merchant (barang salah, rusak, kedaluwarsa). Pembeli menanggung ongkos kirim jika berubah pikiran,
+selama kategorinya mengizinkan.
 
-7.4 Food products cannot be returned because the buyer changed their mind.
+7.4 Produk makanan tidak bisa diretur karena pembeli berubah pikiran.
 
-7.5 The merchant has 2 working days to respond to a return request. No response means the return is approved
-automatically.
+7.5 Merchant punya waktu 2 hari kerja untuk merespons permintaan retur. Jika tidak ada respons, retur disetujui
+otomatis.
 
-7.6 Disputes are reviewed by the marketplace team within 3 working days. The merchant balance for that order is
-frozen during the review.
+7.6 Sengketa ditinjau tim marketplace dalam 3 hari kerja. Saldo merchant untuk pesanan tersebut dibekukan selama
+peninjauan.
 
-7.7 Refunds to buyers are processed within 1 working day after a return is approved.
+7.7 Pengembalian dana ke pembeli diproses dalam 1 hari kerja setelah retur disetujui.
 
-## 8. Ratings and store score
+## 8. Rating dan skor toko
 
-8.1 The store score ranges from 0 to 100 and is based on order acceptance rate, on-time handover, return rate,
-and average rating.
+8.1 Skor toko bernilai 0 sampai 100 dan dihitung dari tingkat penerimaan pesanan, ketepatan waktu serah paket, tingkat
+retur, dan rating rata-rata.
 
-8.2 A store score below 60 for 2 consecutive weeks removes the store from campaigns. Below 40, new listings are paused
-until the score recovers.
+8.2 Skor toko di bawah 60 selama 2 minggu berturut-turut membuat toko dikeluarkan dari kampanye. Di bawah 40, unggahan
+produk baru dihentikan sementara sampai skor pulih.
 
-8.3 Merchants may reply to every review once. Asking a buyer to change a review in exchange for a discount or gift is
-not allowed and can lead to suspension.
+8.3 Merchant boleh membalas setiap ulasan satu kali. Meminta pembeli mengubah ulasan dengan imbalan diskon atau hadiah
+tidak diperbolehkan dan bisa berujung penangguhan akun.
 
-## 9. Promotions and campaigns
+## 9. Promo dan kampanye
 
-9.1 The "Mega Sale" runs on the 10th of every month. The marketplace funds free shipping up to Rp10,000 for orders above
-Rp50,000.
+9.1 "Mega Sale" berlangsung setiap tanggal 10. Marketplace menanggung gratis ongkir sampai Rp10.000 untuk pesanan di atas
+Rp50.000.
 
-9.2 "Ramadan Berkah" runs during Ramadan. Merchants who join must offer at least 10% discount on at least 3 products.
+9.2 "Ramadan Berkah" berlangsung selama bulan Ramadan. Merchant yang ikut wajib memberi diskon minimal 10% untuk minimal
+3 produk.
 
-9.3 Merchant vouchers can be set from 5% to 50%. The voucher budget is deducted from the merchant's payout.
+9.3 Voucher toko bisa diatur dari 5% sampai 50%. Anggaran voucher dipotong dari dana yang diterima merchant.
 
-9.4 A product cannot join two discount programs at the same time. The larger discount applies.
+9.4 Satu produk tidak bisa ikut dua program diskon sekaligus. Yang berlaku adalah diskon yang lebih besar.
 
-## 10. Account safety
+## 10. Keamanan akun
 
-10.1 Marketplace staff will never ask for a password, PIN, or OTP code. Report anyone who asks.
+10.1 Staf marketplace tidak pernah meminta password, PIN, atau kode OTP. Laporkan siapa pun yang memintanya.
 
-10.2 Changing the payout bank account requires an OTP sent to the registered WhatsApp number and a 24-hour holding
-period before the next withdrawal.
+10.2 Mengganti rekening pencairan membutuhkan OTP yang dikirim ke nomor WhatsApp terdaftar, lalu ada masa tahan 24 jam
+sebelum penarikan berikutnya.
 
-10.3 Accounts suspended for fraud lose access to their balance until the investigation is complete, up to 30 days.
+10.3 Akun yang ditangguhkan karena penipuan kehilangan akses ke saldonya sampai investigasi selesai, paling lama 30 hari.
 
 ## 11. Help desk
 
-11.1 The help desk is available through the Help Center in the merchant dashboard, Monday to Saturday, 08:00 to 17:00 WIB.
+11.1 Help desk bisa dihubungi lewat Pusat Bantuan di dashboard merchant, Senin sampai Sabtu, pukul 08.00 sampai 17.00
+WIB.
 
-11.2 Urgent issues about stolen accounts are handled 7 days a week.
+11.2 Masalah mendesak terkait akun yang dicuri ditangani 7 hari seminggu.

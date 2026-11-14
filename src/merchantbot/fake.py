@@ -26,14 +26,19 @@ class FakeBedrock:
         self.calls += 1
         q = messages[0]["content"][0]["text"]
         if toolConfig:  # router call
-            hard = any(w in q.lower() for w in ("rp", "unfair", "what happens", "apa yang terjadi", "kapan",
-                                                  "can they", "do i have to", "right away", "voucher", "neighboring",
-                                                  "30 jam", "score"))
+            hard = self._hard(q)
             label = "complex" if hard else "simple"
             return {"output": {"message": {"content": [{"toolUse": {"name": "route", "input": {"label": label}}}]}},
                     "usage": {"inputTokens": _tokens(system[0]["text"] + q) + 120, "outputTokens": 12}}
         g = _GOLDEN.get(q, {"expect": [], "label": "complex"})
-        small = "micro" in modelId
+        trace = None
+        if ":default-prompt-router/" in modelId or ":prompt-router/" in modelId:
+            # Fake managed router: picks the cheaper model for short questions only (a different heuristic
+            # from ours, so the comparison is not trivially identical).
+            picked = "us.amazon.nova-lite-v1:0" if len(q) < 60 else "us.amazon.nova-pro-v1:0"
+            trace = {"promptRouter": {"invokedModelId": f"arn:aws:bedrock:us-east-1:000000000000:inference-profile/{picked}"}}
+            modelId = picked
+        small = "micro" in modelId or "nova-lite-v1" in modelId
         if small and g["label"] == "complex":
             text = "Sorry, I am not sure."  # the fake small model fails complex questions
         else:
@@ -51,4 +56,13 @@ class FakeBedrock:
             usage["inputTokens"] = _tokens(q)
         else:
             usage["inputTokens"] = _tokens(prefix + q)
-        return {"output": {"message": {"content": [{"text": text}]}}, "usage": usage}
+        r = {"output": {"message": {"content": [{"text": text}]}}, "usage": usage}
+        if trace:
+            r["trace"] = trace
+        return r
+
+    @staticmethod
+    def _hard(q: str) -> bool:
+        return any(w in q.lower() for w in ("rp", "tidak adil", "apa yang terjadi", "apa akibatnya", "kapan uangnya",
+                                            "siapa yang bayar", "langsung tarik", "voucher", "kota tetangga",
+                                            "30 jam", "wajib menerima"))

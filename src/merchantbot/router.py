@@ -10,11 +10,15 @@ from .assistant import Call
 log = logging.getLogger(__name__)
 
 ROUTER_SYSTEM = (
-    "You route questions from marketplace merchants. Call the `route` tool exactly once.\n"
+    "You route questions from marketplace merchants. The questions are in Indonesian. "
+    "Call the `route` tool exactly once.\n"
     "simple = the answer is one fact or one rule from a policy (a number, a yes/no, a time, a limit).\n"
     "complex = anything that needs a calculation, combines two or more rules, depends on a date or day of the "
     "week, handles a complaint or an angry merchant, or might not be covered by the policy at all.\n"
-    "When unsure, choose complex."
+    "When unsure, choose complex.\n"
+    # Examples are deliberately NOT taken from data/golden.jsonl, so the evaluation stays honest.
+    "Examples: 'Berapa lama moderasi produk?' = simple. "
+    "'Saya tarik saldo ke BCA dua kali hari ini, total biayanya berapa?' = complex."
 )
 
 ROUTE_TOOL = {"toolSpec": {

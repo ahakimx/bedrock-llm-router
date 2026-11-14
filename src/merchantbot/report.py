@@ -8,9 +8,9 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-ORDER = ["baseline", "cache", "router", "router-cache"]
+ORDER = ["baseline", "cache", "router", "router-cache", "bedrock-ipr"]
 LABEL = {"baseline": "All to primary", "cache": "Primary + caching", "router": "Router",
-         "router-cache": "Router + caching"}
+         "router-cache": "Router + caching", "bedrock-ipr": "Bedrock IPR (Nova Lite/Pro)"}
 
 
 def load(fake):
@@ -36,7 +36,8 @@ def table(data):
         row("Change vs. baseline", lambda s: f"{(s['cost_per_1k_usd'] / base['cost_per_1k_usd'] - 1) * 100:+.0f}%")
     row("Golden pass rate", lambda s: f"{s['pass_rate'] * 100:.0f}% ({round(s['pass_rate'] * s['n'])}/{s['n']})")
     row("Latency p50 / p90", lambda s: f"{s['latency_p50_ms']:.0f} / {s['latency_p90_ms']:.0f} ms")
-    row("Answered by small model", lambda s: f"{s['share_small'] * 100:.0f}%")
+    row("Answered by the cheaper model", lambda s: f"{s['share_small'] * 100:.0f}%")
+    row("Misrouted (vs. golden label)", lambda s: str(len(s["misroutes"])) if s["mode"] in ("router", "router-cache", "bedrock-ipr") else "–")
     row("Router cost share", lambda s: f"{(s['router_cost_usd'] / s['cost_usd'] * 100) if s['cost_usd'] else 0:.0f}%")
     row("Cache read tokens", lambda s: f"{s['cache_read_tokens']:,}")
     return "\n".join(lines)
@@ -78,9 +79,12 @@ def main():
     print(table(data))
     print("\n**Break-even**\n")
     print(break_even(data))
-    misroutes = sorted({q for s, _ in data.values() for q in s["misroutes"]})
-    if misroutes:
-        print(f"\nMisrouted questions (router label differs from golden label): {', '.join(misroutes)}")
+    for m, (s, _) in data.items():
+        if s["misroutes"]:
+            print(f"\nMisrouted by {LABEL[m]}: {', '.join(s['misroutes'])}")
+    if "bedrock-ipr" in data:
+        print("\nBedrock IPR chooses between Nova Lite and Nova Pro (its default Nova router), so it is a"
+              " different model pair from ours: compare it with the `Router` column (no caching on either).")
 
 
 if __name__ == "__main__":
