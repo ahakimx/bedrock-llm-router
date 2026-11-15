@@ -74,18 +74,18 @@ bermerek palsu.
 
 ## 5. Aturan per kategori
 
-| Kategori | Waktu proses maksimal | Batas waktu retur | Syarat tambahan |
-|---|---|---|---|
-| Kerupuk dan keripik | 2 hari kerja | 2 x 24 jam jika rusak | Berat bersih di label |
-| Ikan asin dan ikan kering | 2 hari kerja | 2 x 24 jam jika rusak | Tanggal produksi dan kemasan vakum atau tersegel |
-| Hasil laut segar | Hari yang sama | 1 x 24 jam jika tidak segar saat tiba | Hanya kirim dalam kota, dengan kemasan dingin |
-| Kue basah | Hari yang sama | 1 x 24 jam jika rusak | Hanya kirim dalam kota |
-| Kue kering | 3 hari kerja | 2 x 24 jam jika rusak | Label halal atau P-IRT |
-| Sambal dan bumbu | 2 hari kerja | 2 x 24 jam jika bocor | Toples kaca wajib dibungkus bubble wrap |
-| Kopi dan teh | 3 hari kerja | 2 x 24 jam jika rusak | Tanggal sangrai untuk kopi |
-| Kerajinan anyaman | 5 hari kerja | 7 hari untuk cacat apa pun | Ukuran di deskripsi |
-| Songket dan kain | 5 hari kerja | 7 hari untuk cacat apa pun | Panjang dan lebar yang tepat |
-| Busana muslim | 3 hari kerja | 7 hari untuk tukar ukuran | Tabel ukuran di foto |
+| Kategori | Waktu proses maksimal | Batas waktu retur | Retur karena berubah pikiran | Syarat tambahan |
+|---|---|---|---|---|
+| Kerupuk dan keripik | 2 hari kerja | 2 x 24 jam jika rusak | Tidak (makanan, aturan 7.4) | Berat bersih di label |
+| Ikan asin dan ikan kering | 2 hari kerja | 2 x 24 jam jika rusak | Tidak (makanan, aturan 7.4) | Tanggal produksi dan kemasan vakum atau tersegel |
+| Hasil laut segar | Hari yang sama | 1 x 24 jam jika tidak segar saat tiba | Tidak (makanan, aturan 7.4) | Hanya kirim dalam kota, dengan kemasan dingin |
+| Kue basah | Hari yang sama | 1 x 24 jam jika rusak | Tidak (makanan, aturan 7.4) | Hanya kirim dalam kota |
+| Kue kering | 3 hari kerja | 2 x 24 jam jika rusak | Tidak (makanan, aturan 7.4) | Label halal atau P-IRT |
+| Sambal dan bumbu | 2 hari kerja | 2 x 24 jam jika bocor | Tidak (makanan, aturan 7.4) | Toples kaca wajib dibungkus bubble wrap |
+| Kopi dan teh | 3 hari kerja | 2 x 24 jam jika rusak | Tidak (makanan, aturan 7.4) | Tanggal sangrai untuk kopi |
+| Kerajinan anyaman | 5 hari kerja | 7 hari untuk cacat apa pun | Tidak, hanya untuk cacat | Ukuran di deskripsi |
+| Songket dan kain | 5 hari kerja | 7 hari untuk cacat apa pun | Tidak, hanya untuk cacat | Panjang dan lebar yang tepat |
+| Busana muslim | 3 hari kerja | 7 hari untuk tukar ukuran | Ya, hanya tukar ukuran, ongkir ditanggung pembeli | Tabel ukuran di foto |
 
 5.1 "Hari kerja" adalah Senin sampai Sabtu, tidak termasuk hari libur nasional. Hari Minggu bukan hari kerja
 marketplace.
@@ -119,7 +119,7 @@ boleh menolak klaim.
 
 7.3 Untuk retur yang disetujui, pembeli mengirim balik barangnya. Marketplace menanggung ongkos kirim retur jika
 kesalahan ada di merchant (barang salah, rusak, kedaluwarsa). Pembeli menanggung ongkos kirim jika berubah pikiran,
-selama kategorinya mengizinkan.
+hanya untuk kategori yang mengizinkannya (lihat kolom "Retur karena berubah pikiran" di bagian 5).
 
 7.4 Produk makanan tidak bisa diretur karena pembeli berubah pikiran.
 
